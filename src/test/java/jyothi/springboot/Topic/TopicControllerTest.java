@@ -40,7 +40,7 @@ void setup() throws Exception {
 	@Test
 	void test() {
 
-System.out.println("test for git");
+System.out.println("test for git branch");
 		
 		List<Topic> topics= new ArrayList<>( Arrays.asList(new Topic("java","Java","java description"),
 				new Topic("oracle","oracle","oracleDescription")
