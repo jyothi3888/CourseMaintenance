@@ -13,6 +13,21 @@
 
 </parent>
 <dependencies>
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
+<!-- <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+    <version>2.4.2</version>
+</dependency>
+ -->
+
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+    
+</dependency>
+
 
 <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
 <dependency>
@@ -66,7 +81,41 @@
     <version>0.8.6</version>
 </dependency>
 -->
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger-ui -->
 
+
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+<!-- 
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>3.0.0</version>
+</dependency>
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger-ui</artifactId>
+    <version>3.0.0</version>
+</dependency>
+-->
+<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-logging -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-logging</artifactId>
+    <version>2.4.3</version>
+</dependency>
+<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml -->
+<dependency>
+    <groupId>com.fasterxml.jackson.dataformat</groupId>
+    <artifactId>jackson-dataformat-xml</artifactId>
+   
+</dependency>
+
+
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-boot-starter</artifactId>
+    <version>3.0.0</version>
+</dependency>
 <dependency>
 		<groupId>org.projectlombok</groupId>
 		<artifactId>lombok</artifactId>
@@ -119,8 +168,10 @@
 </dependency>
 
   </dependencies>
+ 
   
   <build>
+  <finalName>COURSE</finalName>
         <plugins>
             <plugin>
                 
@@ -159,7 +210,7 @@
 </plugin>
         </plugins>
     </build>
-  
+    
   <properties>
   
   

@@ -23,7 +23,9 @@ public class TopicService {
 						new Topic("oracle","oracle","oracleDescription")
 						, new Topic("postgres","postgres","postgres description")));
 	
-	
+	public void test() {
+		System.out.println("Testing");
+	}
 	
 	public List<Topic> getTopics() {
 		

@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: jyothi.springboot.Topic.TopicControllerTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 1.615 s <<< FAILURE! - in jyothi.springboot.Topic.TopicControllerTest
-test  Time elapsed: 1.6 s  <<< ERROR!
-java.lang.NullPointerException: Cannot invoke "jyothi.springboot.Topic.TopicService.getTopics()" because "this.topicService" is null
-	at jyothi.springboot.Topic.TopicControllerTest.test(TopicControllerTest.java:45)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 1, Time elapsed: 0.018 s - in jyothi.springboot.Topic.TopicControllerTest

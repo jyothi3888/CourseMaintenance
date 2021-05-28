@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TopicService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">courseMaintenance</a> &gt; <a href="index.source.html" class="el_package">jyothi.springboot.Topic</a> &gt; <span class="el_source">TopicService.java</span></div><h1>TopicService.java</h1><pre class="source lang-java linenums">package jyothi.springboot.Topic;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ctc.wstx.shaded.msv_core.datatype.xsd.Comparator;
+
+@Service
+<span class="nc" id="L14">public class TopicService {</span>
+	@Autowired
+	TopicRepository tr;
+	
+	void TopicService() {
+		
+<span class="nc" id="L20">	}</span>
+
+<span class="nc" id="L22">	List&lt;Topic&gt; topics= new ArrayList&lt;&gt;( Arrays.asList(new Topic(&quot;java&quot;,&quot;Java&quot;,&quot;java description&quot;),</span>
+						new Topic(&quot;oracle&quot;,&quot;oracle&quot;,&quot;oracleDescription&quot;)
+						, new Topic(&quot;postgres&quot;,&quot;postgres&quot;,&quot;postgres description&quot;)));
+	
+	public void test() {
+<span class="nc" id="L27">		System.out.println(&quot;Testing&quot;);</span>
+<span class="nc" id="L28">	}</span>
+	
+	public List&lt;Topic&gt; getTopics() {
+		
+	
+<span class="nc" id="L33">		List&lt;Topic&gt; t=new ArrayList();</span>
+		//
+	
+
+<span class="nc" id="L37">				tr.findAll().forEach(t::add);</span>
+<span class="nc" id="L38">				return t;</span>
+	}
+
+	
+	public Topic getTopic(String id) {
+<span class="nc" id="L43">		return tr.findById(id).get();</span>
+				
+				//topics.stream().filter(t -&gt;t.getCourseId().equals(id)).findFirst().get();
+	}
+
+
+	public void insertTopic(Topic t) {
+<span class="nc" id="L50">		tr.save(t);</span>
+		
+<span class="nc" id="L52">	}</span>
+
+
+	public void updateTopic(Topic t) {
+		// TODO Auto-generated method stub
+		
+		/*Topic topic =topics.stream().filter(t1 -&gt;t1.getCourseId().equals(t.getCourseId())).findFirst().get();
+		topic.setCourseName(t.getCourseName());
+		topic.setCourseDesc(t.getCourseDesc());*/
+<span class="nc" id="L61">		tr.save(t);</span>
+<span class="nc" id="L62">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

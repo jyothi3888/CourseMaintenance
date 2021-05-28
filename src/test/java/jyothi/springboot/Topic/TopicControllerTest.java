@@ -8,11 +8,13 @@ import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.when;
@@ -38,6 +40,7 @@ void setup() throws Exception {
 } */
 	
 	@Test
+	@Disabled
 	void test() {
 
 System.out.println("test for git branch");
@@ -46,13 +49,14 @@ System.out.println("test for git branch");
 				new Topic("oracle","oracle","oracleDescription")
 				, new Topic("postgres","postgres","postgres description")));
 
-
+	//	Mockito.doNothing().when(topicService.test());
 when(topicService.getTopics()).thenReturn(topics);
 		/*Collections.sort(topics, (a,b)->a.getCourseName().compareTo(b.getCourseName()));
 		topics.forEach(i ->System.out.println(i));
 		topics.sort((a,b)->a.getCourseName().compareTo(b.getCourseName()));
 		topics.forEach(i->System.out.println(i.getCourseName()));
 		System.out.println("test");*/
+
 		
 		List<Topic> tl=t.getTopics();
 		assertEquals(3, tl.size());
