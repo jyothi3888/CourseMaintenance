@@ -2,6 +2,7 @@ package jyothi.springboot.Topic;
 
 
 import java.lang.reflect.Field;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -57,21 +58,20 @@ public class TopicController {
 	}
 	
 	
-	@GetMapping(path="TopicsJson" ,produces=MediaType.APPLICATION_JSON_VALUE)
+	/*@GetMapping(path="TopicsJson" ,produces=MediaType.APPLICATION_JSON_VALUE)
 
 	public List<Topic> getTopicsJson() {
 		logger.debug("this is error message");
 		List<Topic> t= topicService.getTopics();
 		t.get(0).setCourseDesc("java1234");
 		return t;
-	}
+	} */
 
-	@Cacheable(value = "xyz" ,key = "'Cache'+#id")
 	
 	@GetMapping(path="TopicXml/{xmlid}" ,produces=MediaType.APPLICATION_XML_VALUE)
 
 	
-	public Topic getTopicXML(@PathVariable String xmlid) throws InterruptedException {
+	public Topic getTopicXML(@PathVariable String xmlid) throws InterruptedException, URISyntaxException {
 		System.out.println("xml controller");
 		Topic t= topicService.getTopic(xmlid);
 		Thread.sleep(5000);
@@ -83,11 +83,14 @@ public class TopicController {
 	
 	@GetMapping(path="TopicJson/{jsonid}" ,produces=MediaType.APPLICATION_JSON_VALUE)
 	
-	public Topic getTopicJSON(@PathVariable String jsonid) throws InterruptedException {
+	public Topic getTopicJSON(@PathVariable String jsonid) throws InterruptedException, URISyntaxException {
 		System.out.println("json controller");
-		Topic t= topicService.getTopic(jsonid);
-		Thread.sleep(5000);
-		t.setCourseName(courseName1+"  "+concate);
+		Topic t;
+		
+			t = topicService.getTopic(jsonid);
+		
+	
+		//t.setCourseName(courseName1+"  "+concate);
 		/*if(0==0)
 		throw new ArithmeticException();
 		*/
@@ -109,7 +112,7 @@ public class TopicController {
 	}
 	
 	@PatchMapping(value="/patch/{id}")
-	public void patchTest(@PathVariable String id,@RequestBody Map<String,String> columns) {
+	public void patchTest(@PathVariable String id,@RequestBody Map<String,String> columns) throws URISyntaxException {
 		Topic t=topicService.getTopic(id);
 		columns.forEach((k,v)->{
 		
@@ -120,6 +123,7 @@ public class TopicController {
 	});
 		topicService.updateTopic(t);
 	}
+	
 	
 
 }

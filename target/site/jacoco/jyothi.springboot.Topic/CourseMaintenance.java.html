@@ -2,19 +2,32 @@
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
+import jyothi.springboot.Tutor.TutorFilter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableCaching
 @PropertySource(&quot;db.properties&quot;)
-<span class="nc" id="L13">public class CourseMaintenance {</span>
+<span class="nc" id="L16">public class CourseMaintenance {</span>
 
 	public static void main(String[] args) {
-<span class="nc" id="L16">		SpringApplication.run(CourseMaintenance.class, args);</span>
-<span class="nc" id="L17">	}</span>
+<span class="nc" id="L19">		SpringApplication.run(CourseMaintenance.class, args);</span>
+<span class="nc" id="L20">	}</span>
 
+	/*
+	@Bean
+	
+	public FilterRegistrationBean&lt;TutorFilter&gt; myfilterRegistration () {
+		FilterRegistrationBean&lt;TutorFilter&gt; r=new FilterRegistrationBean&lt;TutorFilter&gt;();
+		r.addUrlPatterns(&quot;/Tutor&quot;);
+		r.setFilter(new TutorFilter());
+		return r;
+		
+	}*/
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>

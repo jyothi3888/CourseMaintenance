@@ -22,7 +22,7 @@ import org.springframework.web.context.request.WebRequest;
 <span class="nc" id="L22">		System.out.println(ex.getMessage());</span>
 <span class="nc" id="L23">		System.out.println(req.getContextPath());</span>
 <span class="nc" id="L24">		ErrorMessageEntity eme=new ErrorMessageEntity(HttpStatus.BAD_REQUEST</span>
-<span class="nc" id="L25">				,ex.getMessage(),</span>
+<span class="nc" id="L25">				,&quot;Exceptionvisss&quot;+ ex.getMessage(),</span>
 <span class="nc" id="L26">				LocalDate.now(),</span>
 <span class="nc" id="L27">				LocalTime.now());</span>
 <span class="nc" id="L28">		List&lt;String&gt; details = new ArrayList&lt;&gt;();</span>

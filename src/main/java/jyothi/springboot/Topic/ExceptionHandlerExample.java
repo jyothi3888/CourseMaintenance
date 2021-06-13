@@ -22,7 +22,7 @@ public class ExceptionHandlerExample {
 		System.out.println(ex.getMessage());
 		System.out.println(req.getContextPath());
 		ErrorMessageEntity eme=new ErrorMessageEntity(HttpStatus.BAD_REQUEST
-				,ex.getMessage(),
+				,"Exceptionvisss"+ ex.getMessage(),
 				LocalDate.now(),
 				LocalTime.now());
 		List<String> details = new ArrayList<>();

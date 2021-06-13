@@ -1,10 +1,15 @@
 jyothi/springboot/Topic/ErrorMessageEntity.class
+jyothi/springboot/Tutor/Tutor.class
+jyothi/springboot/Tutor/TutorService.class
 jyothi/springboot/Topic/TopicController.class
 jyothi/springboot/Topic/interceptorRegistry.class
 jyothi/springboot/Topic/TopicRepository.class
 jyothi/springboot/Topic/Topic.class
 jyothi/springboot/Topic/ExceptionHandlerExample.class
 jyothi/springboot/Topic/InterceptorExample.class
+jyothi/springboot/Tutor/TutorFilter.class
 jyothi/springboot/Topic/CourseMaintenance.class
+jyothi/springboot/Tutor/TutorRepository.class
 jyothi/springboot/Topic/TopicService.class
+jyothi/springboot/Tutor/TutorController.class
 jyothi/springboot/Topic/RequestbodyadviceExample.class

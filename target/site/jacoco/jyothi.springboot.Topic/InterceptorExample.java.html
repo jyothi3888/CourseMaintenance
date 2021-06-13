@@ -15,14 +15,13 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@Component
-<span class="nc" id="L19">public class InterceptorExample implements  HandlerInterceptor {</span>
+<span class="nc" id="L18">public class InterceptorExample implements  HandlerInterceptor {</span>
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-<span class="nc" id="L24">	System.out.println(&quot;content type &quot;+ request.getContentType());</span>
-<span class="nc" id="L25">	response.setContentType(&quot;application/json&quot;);</span>
+<span class="nc" id="L23">	System.out.println(&quot;content type &quot;+ request.getContentType());</span>
+<span class="nc" id="L24">	response.setContentType(&quot;application/json&quot;);</span>
 	/*if(request.getContentType().equalsIgnoreCase(&quot;application/json&quot;)) {
 		response.sendRedirect(&quot;/TopicsJson&quot;);
 	} else {
@@ -30,8 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 	} */
 	
 	
-<span class="nc" id="L33">	RequestDispatcher rs= request.getRequestDispatcher(&quot;/TopicsJson&quot;);</span>
-<span class="nc" id="L34">	rs.include(request, response);</span>
+<span class="nc" id="L32">	RequestDispatcher rs= request.getRequestDispatcher(&quot;/TopicsJson&quot;);</span>
+<span class="nc" id="L33">	rs.include(request, response);</span>
 	/*
 Iterator i =request.getHeaderNames().asIterator();
 	while(i.hasNext()) {
@@ -41,22 +40,22 @@ Iterator i =request.getHeaderNames().asIterator();
 	//if(Optional.ofNullable(request.getContentType()).toString().equalsIgnoreCase(MediaType.APPLICATION_XML_VALUE))
 
 		//response.sendre
-<span class="nc" id="L44">return HandlerInterceptor.super.preHandle(request, response, handler);</span>
+<span class="nc" id="L43">return HandlerInterceptor.super.preHandle(request, response, handler);</span>
 	}
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
 		// TODO Auto-generated method stub
-<span class="nc" id="L51">		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);</span>
-<span class="nc" id="L52">	}</span>
+<span class="nc" id="L50">		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);</span>
+<span class="nc" id="L51">	}</span>
 
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {
 		// TODO Auto-generated method stub
-<span class="nc" id="L58">		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);</span>
-<span class="nc" id="L59">	}</span>
+<span class="nc" id="L57">		HandlerInterceptor.super.afterCompletion(request, response, handler, ex);</span>
+<span class="nc" id="L58">	}</span>
 	
 
 }
