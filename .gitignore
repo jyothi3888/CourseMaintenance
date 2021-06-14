@@ -1,3 +1,7 @@
 *.class
+<<<<<<< HEAD
+*.xml
+=======
 *.html
+>>>>>>> 2609f6f34eaa20ef83085e248213502f1f532d8b
 /target/
