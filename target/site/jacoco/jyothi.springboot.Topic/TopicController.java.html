@@ -2,6 +2,7 @@
 
 
 import java.lang.reflect.Field;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -34,44 +35,43 @@ import com.sun.el.util.ReflectionUtil;
 
 @RestController
 
-<span class="nc" id="L37">public class TopicController {</span>
+<span class="nc" id="L38">public class TopicController {</span>
 	@Autowired
 	private TopicService topicService;
 	@Value(&quot;${topic.name}&quot;)
 	private String courseName1;
 	@Value(&quot;${topic.concate}&quot;)
 	private String concate;
-<span class="nc" id="L44">	Logger logger = LoggerFactory.getLogger(TopicController.class);</span>
+<span class="nc" id="L45">	Logger logger = LoggerFactory.getLogger(TopicController.class);</span>
 	@GetMapping()
 	public String sayHello() {
-<span class="nc" id="L47">		return &quot; hellov&quot;;</span>
+<span class="nc" id="L48">		return &quot; hellov&quot;;</span>
 	}
 	
 	@GetMapping(path=&quot;TopicsXml&quot; ,produces=MediaType.APPLICATION_XML_VALUE)
 
 	public List&lt;Topic&gt; getTopics() {
-<span class="nc" id="L53">		logger.debug(&quot;this is error message&quot;);</span>
-<span class="nc" id="L54">		List&lt;Topic&gt; t= topicService.getTopics();</span>
-<span class="nc" id="L55">		t.get(0).setCourseDesc(&quot;java1234&quot;);</span>
-<span class="nc" id="L56">		return t;</span>
+<span class="nc" id="L54">		logger.debug(&quot;this is error message&quot;);</span>
+<span class="nc" id="L55">		List&lt;Topic&gt; t= topicService.getTopics();</span>
+<span class="nc" id="L56">		t.get(0).setCourseDesc(&quot;java1234&quot;);</span>
+<span class="nc" id="L57">		return t;</span>
 	}
 	
 	
-	@GetMapping(path=&quot;TopicsJson&quot; ,produces=MediaType.APPLICATION_JSON_VALUE)
+	/*@GetMapping(path=&quot;TopicsJson&quot; ,produces=MediaType.APPLICATION_JSON_VALUE)
 
 	public List&lt;Topic&gt; getTopicsJson() {
-<span class="nc" id="L63">		logger.debug(&quot;this is error message&quot;);</span>
-<span class="nc" id="L64">		List&lt;Topic&gt; t= topicService.getTopics();</span>
-<span class="nc" id="L65">		t.get(0).setCourseDesc(&quot;java1234&quot;);</span>
-<span class="nc" id="L66">		return t;</span>
-	}
+		logger.debug(&quot;this is error message&quot;);
+		List&lt;Topic&gt; t= topicService.getTopics();
+		t.get(0).setCourseDesc(&quot;java1234&quot;);
+		return t;
+	} */
 
-	@Cacheable(value = &quot;xyz&quot; ,key = &quot;'Cache'+#id&quot;)
 	
 	@GetMapping(path=&quot;TopicXml/{xmlid}&quot; ,produces=MediaType.APPLICATION_XML_VALUE)
 
 	
-	public Topic getTopicXML(@PathVariable String xmlid) throws InterruptedException {
+	public Topic getTopicXML(@PathVariable String xmlid) throws InterruptedException, URISyntaxException {
 <span class="nc" id="L75">		System.out.println(&quot;xml controller&quot;);</span>
 <span class="nc" id="L76">		Topic t= topicService.getTopic(xmlid);</span>
 <span class="nc" id="L77">		Thread.sleep(5000);</span>
@@ -83,43 +83,47 @@ import com.sun.el.util.ReflectionUtil;
 	
 	@GetMapping(path=&quot;TopicJson/{jsonid}&quot; ,produces=MediaType.APPLICATION_JSON_VALUE)
 	
-	public Topic getTopicJSON(@PathVariable String jsonid) throws InterruptedException {
+	public Topic getTopicJSON(@PathVariable String jsonid) throws InterruptedException, URISyntaxException {
 <span class="nc" id="L87">		System.out.println(&quot;json controller&quot;);</span>
-<span class="nc" id="L88">		Topic t= topicService.getTopic(jsonid);</span>
-<span class="nc" id="L89">		Thread.sleep(5000);</span>
-<span class="nc" id="L90">		t.setCourseName(courseName1+&quot;  &quot;+concate);</span>
+		Topic t;
+		
+<span class="nc" id="L90">			t = topicService.getTopic(jsonid);</span>
+		
+	
+		//t.setCourseName(courseName1+&quot;  &quot;+concate);
 		/*if(0==0)
 		throw new ArithmeticException();
 		*/
 		
-<span class="nc" id="L95">		return t;</span>
+<span class="nc" id="L98">		return t;</span>
 		 
 	}
 	@RequestMapping(method = RequestMethod.POST,value=&quot;Insert&quot;)
 	public void insertTopic(@RequestBody Topic t) {
 	
-<span class="nc" id="L101">		topicService.insertTopic(t);</span>
-<span class="nc" id="L102">		throw new ArithmeticException(&quot;this is from insert method for testing&quot;);</span>
+<span class="nc" id="L104">		topicService.insertTopic(t);</span>
+<span class="nc" id="L105">		throw new ArithmeticException(&quot;this is from insert method for testing&quot;);</span>
 	}
 	
 	@RequestMapping(value=&quot;/updateTopic&quot; ,method = RequestMethod.PUT)
 	
 	public void updateTopic(@RequestBody Topic t) {
-<span class="nc" id="L108">		topicService.updateTopic(t);</span>
-<span class="nc" id="L109">	}</span>
+<span class="nc" id="L111">		topicService.updateTopic(t);</span>
+<span class="nc" id="L112">	}</span>
 	
 	@PatchMapping(value=&quot;/patch/{id}&quot;)
-	public void patchTest(@PathVariable String id,@RequestBody Map&lt;String,String&gt; columns) {
-<span class="nc" id="L113">		Topic t=topicService.getTopic(id);</span>
-<span class="nc" id="L114">		columns.forEach((k,v)-&gt;{</span>
+	public void patchTest(@PathVariable String id,@RequestBody Map&lt;String,String&gt; columns) throws URISyntaxException {
+<span class="nc" id="L116">		Topic t=topicService.getTopic(id);</span>
+<span class="nc" id="L117">		columns.forEach((k,v)-&gt;{</span>
 		
-<span class="nc" id="L116">		Field f= ReflectionUtils.findField(t.getClass(), (String) k)  ;</span>
-<span class="nc" id="L117">		f.setAccessible(true);</span>
-<span class="nc" id="L118">		ReflectionUtils.setField(f, t, v);</span>
+<span class="nc" id="L119">		Field f= ReflectionUtils.findField(t.getClass(), (String) k)  ;</span>
+<span class="nc" id="L120">		f.setAccessible(true);</span>
+<span class="nc" id="L121">		ReflectionUtils.setField(f, t, v);</span>
 		
-<span class="nc" id="L120">	});</span>
-<span class="nc" id="L121">		topicService.updateTopic(t);</span>
-<span class="nc" id="L122">	}</span>
+<span class="nc" id="L123">	});</span>
+<span class="nc" id="L124">		topicService.updateTopic(t);</span>
+<span class="nc" id="L125">	}</span>
+	
 	
 
 }

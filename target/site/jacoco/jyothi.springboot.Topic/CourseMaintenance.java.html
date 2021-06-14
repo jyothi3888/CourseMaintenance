@@ -7,27 +7,26 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 
-import jyothi.springboot.Tutor.TutorFilter;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableCaching
 @PropertySource(&quot;db.properties&quot;)
-<span class="nc" id="L16">public class CourseMaintenance {</span>
+<span class="nc" id="L15">public class CourseMaintenance {</span>
 
 	public static void main(String[] args) {
-<span class="nc" id="L19">		SpringApplication.run(CourseMaintenance.class, args);</span>
-<span class="nc" id="L20">	}</span>
+<span class="nc" id="L18">		SpringApplication.run(CourseMaintenance.class, args);</span>
+<span class="nc" id="L19">	}</span>
 
-	/*
+	
 	@Bean
 	
-	public FilterRegistrationBean&lt;TutorFilter&gt; myfilterRegistration () {
-		FilterRegistrationBean&lt;TutorFilter&gt; r=new FilterRegistrationBean&lt;TutorFilter&gt;();
-		r.addUrlPatterns(&quot;/Tutor&quot;);
-		r.setFilter(new TutorFilter());
-		return r;
+	public FilterRegistrationBean&lt;TopicFilter&gt; myfilterRegistration () {
+<span class="nc" id="L25">		FilterRegistrationBean&lt;TopicFilter&gt; r=new FilterRegistrationBean&lt;TopicFilter&gt;();</span>
+<span class="nc" id="L26">		r.addUrlPatterns(&quot;/TopicsXml&quot;);</span>
+<span class="nc" id="L27">		r.setFilter(new TopicFilter());</span>
+<span class="nc" id="L28">		return r;</span>
 		
-	}*/
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
