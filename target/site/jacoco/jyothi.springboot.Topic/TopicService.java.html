@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>TopicService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">courseMaintenance</a> &gt; <a href="index.source.html" class="el_package">jyothi.springboot.Topic</a> &gt; <span class="el_source">TopicService.java</span></div><h1>TopicService.java</h1><pre class="source lang-java linenums">package jyothi.springboot.Topic;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.hibernate.annotations.common.util.impl.LoggerFactory;
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.ctc.wstx.shaded.msv_core.datatype.xsd.Comparator;
+
+import io.swagger.models.HttpMethod;
+
+@Service
+<span class="nc" id="L25">public class TopicService {</span>
+	
+	
+<span class="nc" id="L28">	RestTemplate resttemplate=new RestTemplate();</span>
+	
+	
+<span class="nc" id="L31">	Logger l= org.slf4j.LoggerFactory.getLogger(TopicService.class);</span>
+	@Autowired
+	TopicRepository tr;
+	
+	void TopicService(RestTemplateBuilder resttemplatebuilder) {
+<span class="nc" id="L36">		this.resttemplate=resttemplatebuilder.build();</span>
+<span class="nc" id="L37">	}</span>
+
+<span class="nc" id="L39">	List&lt;Topic&gt; topics= new ArrayList&lt;&gt;( Arrays.asList(new Topic(&quot;java&quot;,&quot;Java&quot;,&quot;java description&quot;),</span>
+						new Topic(&quot;oracle&quot;,&quot;oracle&quot;,&quot;oracleDescription&quot;)
+						, new Topic(&quot;postgres&quot;,&quot;postgres&quot;,&quot;postgres description&quot;)));
+	
+	public void test() {
+<span class="nc" id="L44">		System.out.println(&quot;Testing&quot;);</span>
+<span class="nc" id="L45">	}</span>
+
+	public List&lt;Topic&gt; getTopics() {
+		
+	
+<span class="nc" id="L50">		List&lt;Topic&gt; t=new ArrayList();</span>
+		//
+	
+
+<span class="nc" id="L54">				tr.findAll().forEach(t::add);</span>
+<span class="nc" id="L55">				return t;</span>
+	}
+
+
+	@Cacheable(value=&quot;topics1&quot;,key=&quot;'Topic1'+#id&quot;)
+	
+	public Topic getTopic(String id) throws URISyntaxException {
+		
+<span class="nc" id="L63">		String baseurl=&quot;http://localhost:8000/Tutor/Tutor/1&quot;;</span>
+<span class="nc" id="L64">		URI uri=new URI(baseurl);</span>
+<span class="nc" id="L65">		ResponseEntity&lt;Tutor&gt; t= resttemplate.getForEntity(uri, Tutor.class);</span>
+<span class="nc" id="L66">		String baseurl2=&quot;http://localhost:8000/Tutor/AddTutor&quot;;</span>
+<span class="nc" id="L67">		URI uri2= new URI(baseurl2);</span>
+<span class="nc" id="L68">		Tutor tut= new Tutor(5,&quot;xyz&quot;);</span>
+<span class="nc" id="L69">		resttemplate.postForEntity(uri2, tut, String.class);</span>
+		
+<span class="nc" id="L71">		Tutor x=t.getBody();</span>
+<span class="nc" id="L72">		System.out.println(x.getTutorName());</span>
+		
+<span class="nc" id="L74">		l.debug(&quot;from get topic  method&quot;);</span>
+<span class="nc" id="L75">		return tr.findById(id).get();</span>
+				
+				//topics.stream().filter(t -&gt;t.getCourseId().equals(id)).findFirst().get();
+	}
+
+
+	public void insertTopic(Topic t) {
+		
+		
+		
+	
+<span class="nc" id="L86">		tr.save(t);</span>
+		
+<span class="nc" id="L88">	}</span>
+
+@CachePut(value=&quot;topics1&quot;,key=&quot;'Topic1'+#to.courseId&quot; )
+	public Topic updateTopic(Topic to) {
+<span class="nc" id="L92">	l.debug(&quot;from update topic  method&quot;);</span>
+		// TODO Auto-generated method stub
+		
+		/*Topic topic =topics.stream().filter(t1 -&gt;t1.getCourseId().equals(t.getCourseId())).findFirst().get();
+		topic.setCourseName(t.getCourseName());
+		topic.setCourseDesc(t.getCourseDesc());*/
+<span class="nc" id="L98">		tr.save(to);</span>
+<span class="nc" id="L99">		return to;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.3.201901230119</span></div></body></html>
