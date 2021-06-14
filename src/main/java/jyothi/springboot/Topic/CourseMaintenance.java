@@ -13,7 +13,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableCaching
 @PropertySource("db.properties")
 public class CourseMaintenance {
-
+//adding the comment
 	public static void main(String[] args) {
 		SpringApplication.run(CourseMaintenance.class, args);
 	}
